@@ -7,7 +7,7 @@ y = np.array(df.values)[:, -1]
 
 
 def findSAlgo(features: np.ndarray, target: np.ndarray):
-	specificHypothesis = ['?'] * features.shape[1]
+	specificHypothesis = ['ϕ'] * features.shape[1]
 	# Get first positive item as the hypothesis
 	for index, value in enumerate(target):
 		print("Item: ", index, "specificHypothesis: ", specificHypothesis)
