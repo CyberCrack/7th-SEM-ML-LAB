@@ -45,7 +45,7 @@ def separateByClass(dataset):
 
 
 def compute_mean_std(dataset):
-	mean_std = [(st.mean(attribute), st.stdev(attribute)) for attribute in zip(*dataset)];
+	mean_std = [(st.mean(attribute), st.stdev(attribute)) for attribute in zip(*dataset)]
 	del mean_std[-1]  # exclude label
 
 	return mean_std
