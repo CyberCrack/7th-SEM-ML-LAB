@@ -12,31 +12,28 @@ def getEntropy(target_col):
 
 def getInfoGain(data, feature, tname):
 	te = getEntropy(data[tname])
-	print("entropy", round(float(te), 4))
 	vals, counts = np.unique(data[feature], return_counts=True)
 	we = np.sum([(counts[i] / np.sum(counts)) * getEntropy(data.where(data[feature] == vals[i]).dropna()[tname]) for i in range(len(vals))])
 	Information_Gain = te - we
-	print("IG", round(float(Information_Gain), 4))
 	return Information_Gain
 
 
-def ID3(data, f, tname, pnode):
+def ID3(data, feature, tname, parentNode):
 	if len(np.unique(data[tname])) == 1:
 		return np.unique(data[tname])[0]
-	elif len(f) == 0:
-		return pnode
+	elif len(feature) == 0:
+		return parentNode
 	else:
-		pnode = np.unique(data[tname])[np.argmax(np.unique(data[tname])[1])]
-		item_values = [getInfoGain(data, feature, tname) for feature in f]
-		bfi = np.argmax(item_values)
-		bf = f[bfi]
-		print(bf)
-		tree = {bf: {}}
-		f = [i for i in f if i != bf]
-		for value in np.unique(data[bf]):
-			sub_data = data.where(data[bf] == value).dropna()
-			subtree = ID3(sub_data, f, tname, pnode)
-			tree[bf][value] = subtree
+		parentNode = np.unique(data[tname])[0]
+		item_values = [getInfoGain(data, feature, tname) for feature in feature]
+		bestFeatureIndex = np.argmax(item_values)
+		bestFeature = feature[bestFeatureIndex]
+		tree = {bestFeature: {}}
+		feature = [i for i in feature if i != bestFeature]
+		for value in np.unique(data[bestFeature]):
+			sub_data = data.where(data[bestFeature] == value).dropna()
+			subtree = ID3(sub_data, feature, tname, parentNode)
+			tree[bestFeature][value] = subtree
 		return tree
 
 
