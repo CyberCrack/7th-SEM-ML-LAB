@@ -1,1 +1,2 @@
 # [UPDATE 12-01-21] There were some changes in the CEA code plz make the sure u also make those changes 
+# [UPDATE 12-01-21] Plz don't follow the "Find S" prg which uses pandas and numpy. There is another one in the same repo, use that one [Click Here](7th-SEM-ML-LAB/blob/master/Sir's_Find_S.py)
