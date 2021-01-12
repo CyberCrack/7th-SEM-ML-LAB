@@ -25,7 +25,10 @@ for value in f:
 
 			if shypo[i] != lst[i] and shypo[i] != '?':
 				temp_list = ['?'] * i
-				temp_list = temp_list + [shypo[i]]
+				if count == 1:
+					temp_list = temp_list + [lst[i]]
+				else:
+					temp_list = temp_list + [shypo[i]]
 				temp_list = temp_list + (['?'] * (length - 2 - i))
 				if temp_list not in ghypo:
 					ghypo.append(temp_list)
