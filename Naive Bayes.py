@@ -1,7 +1,8 @@
 import csv
 import math
-import random
 import statistics as st
+
+from sklearn.model_selection import train_test_split
 
 
 def loadCsv(filename):
@@ -21,13 +22,7 @@ print('Total attributes present  :', len(dataset[1]) - 1)
 
 
 def splitDataset(dataset, splitRatio):
-	testSize = int(len(dataset) * splitRatio)
-	trainSet = list(dataset)
-	testSet = []
-	while len(testSet) < testSize:
-		# randomly pic on instance from training data
-		index = random.randrange(len(trainSet))
-		testSet.append(trainSet.pop(index))
+	trainSet, testSet = train_test_split(dataset, test_size=splitRatio)
 
 	return [trainSet, testSet]
 
