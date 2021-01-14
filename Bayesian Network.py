@@ -1,5 +1,4 @@
 import pandas as pd
-from pgmpy.estimators import MaximumLikelihoodEstimator
 from pgmpy.inference import VariableElimination
 from pgmpy.models import BayesianModel
 
@@ -10,7 +9,7 @@ model = BayesianModel([('age', 'trestbps'), ('age', 'fbs'), ('sex', 'trestbps'),
 					   ('heartdisease', 'restecg'), ('heartdisease', 'thalach'), ('heartdisease', 'chol')])
 
 print('\nLearning CPDs using Maximum Likelihood Estimators...')
-model.fit(dataset, estimator=MaximumLikelihoodEstimator)
+model.fit(dataset)
 
 print('\nInferencing with Bayesian Network:')
 HeartDisease_infer = VariableElimination(model)

@@ -30,12 +30,11 @@ def splitDataset(dataset, splitRatio):
 # create a dictionary of classes 1 & 0 where the instances belonging to each class
 def separateByClass(dataset):
 	separated = {}
-	for i in range(1, len(dataset)):
+	for i in range(0, len(dataset)):
 		x = dataset[i]
 		if x[-1] not in separated:
 			separated[x[-1]] = []
 		separated[x[-1]].append(x)
-
 	return separated
 
 
@@ -69,7 +68,7 @@ def calculateClassProbabilities(summaries, testVector):
 	for classValue, classSummaries in summaries.items():
 		p[classValue] = 1
 
-		for i in range(1, len(classSummaries)):
+		for i in range(0, len(classSummaries)):
 			mean, stdev = classSummaries[i]
 			x = testVector[i]  # testVector's first attribute
 			# use normal distribution
@@ -100,7 +99,7 @@ def perform_classification(summaries, testSet):
 
 def getAccuracy(testSet, predictions):
 	correct = 0
-	for i in range(1, len(testSet)):
+	for i in range(0, len(testSet)):
 		if testSet[i][-1] == predictions[i]:
 			correct += 1
 
@@ -122,4 +121,4 @@ predictions = perform_classification(summaries, testSet)
 # print(predictions)
 
 accuracy = getAccuracy(testSet, predictions)
-print('\nAccuracy of the Naive Baysian Classifier is :', accuracy)
+print('\nAccuracy of the Naive Bayesian Classifier is :', accuracy)
